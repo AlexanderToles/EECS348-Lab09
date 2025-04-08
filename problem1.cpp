@@ -257,7 +257,7 @@ void compileMatricies(vector<vector<string>> matrixAData, vector<vector<string>>
         //call printMenu with the matricies
         printMenu(matrixA,matrixB);
     }
-    else{ //same thing but with double, now that i think of it, probably coulda used a template here but im tired
+    else{ //same thing but with double
         vector<vector<double>> convertAData(size,vector<double>(size));
         vector<vector<double>> convertBData(size,vector<double>(size));
 
