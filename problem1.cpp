@@ -18,13 +18,13 @@ template <typename T> class Matrix {
             size = nums.size();
         }
         void print_matrix() const{
-            cout << "Print matrix called \n";
             for(int i = 0; i < size; ++i){
                 for(int j = 0; j < size; ++j){
                     cout << data[i][j] << " ";
                 }
                 cout << "\n";
             }
+            cout << "\n";
         }
 };
 
@@ -35,8 +35,6 @@ vector<vector<string>> readData(vector<string> fileData, int start, int end, int
     for(int i = start; i < end; i++){
 
         vector<string> row;
-
-        cout << "line: " << i << "\n" ;
         regex searchTerm;
         
         if(type == 1){
@@ -50,7 +48,6 @@ vector<vector<string>> readData(vector<string> fileData, int start, int end, int
         for(sregex_iterator i = lineStart; i != lineEnd; ++i){
             smatch match = *i;
             row.push_back(match.str());
-            cout << match.str() << "\n";
         }
         returnData.push_back(row);
     }
@@ -61,6 +58,7 @@ vector<vector<string>> readData(vector<string> fileData, int start, int end, int
 void compileMatricies(vector<vector<string>> matrixAData, vector<vector<string>> matrixBData, int size, int type){
     
     if(type==0){
+
         vector<vector<int>> convertAData(size,vector<int>(size));
         vector<vector<int>> convertBData(size,vector<int>(size));
 
@@ -72,6 +70,22 @@ void compileMatricies(vector<vector<string>> matrixAData, vector<vector<string>>
         }
         Matrix<int> matrixA(convertAData);
         Matrix<int> matrixB(convertBData);
+
+        matrixA.print_matrix();
+        matrixB.print_matrix();
+    }
+    else{
+        vector<vector<double>> convertAData(size,vector<double>(size));
+        vector<vector<double>> convertBData(size,vector<double>(size));
+
+        for(int i = 0; i < size; ++i){
+            for(int j = 0; j < size; ++j){
+                convertAData[i][j] = stod(matrixAData[i][j]);
+                convertBData[i][j] = stod(matrixBData[i][j]);
+            }
+        }
+        Matrix<double> matrixA(convertAData);
+        Matrix<double> matrixB(convertBData);
 
         matrixA.print_matrix();
         matrixB.print_matrix();
